@@ -1,27 +1,19 @@
 import streamlit as st
 import streamlit_authenticator as stauth
 
+# Plain-text passwords (for now)
 credentials = {
     "usernames": {
-        "admin": {
-            "name": "Admin",
-            "password": "admin123",
-        },
-        "ruaka": {
-            "name": "Ruaka",
-            "password": "ruaka123",
-        },
-        "buruburu": {
-            "name": "Buruburu",
-            "password": "buru123",
-        }
+        "admin": {"name": "Admin", "password": "admin123"},
+        "ruaka": {"name": "Ruaka", "password": "ruaka123"},
+        "buruburu": {"name": "Buruburu", "password": "buru123"},
     }
 }
 
 authenticator = stauth.Authenticate(
     credentials,
-    "cash_app",
-    "abcdef",
+    "cash_app",  # cookie name
+    "abcdef",    # cookie key
     cookie_expiry_days=1
 )
 
