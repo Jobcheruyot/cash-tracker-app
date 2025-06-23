@@ -1,21 +1,27 @@
 import streamlit as st
 import streamlit_authenticator as stauth
 
-names = ['Admin', 'Ruaka', 'Buruburu']
-usernames = ['admin', 'ruaka', 'buruburu']
-passwords = ['admin123', 'ruaka123', 'buru123']
-roles = ['admin', 'user', 'user']
-
-# 🔁 Corrected Hasher usage
-hasher = stauth.Hasher()
-hashed_passwords = hasher.generate(passwords)
+credentials = {
+    "usernames": {
+        "admin": {
+            "name": "Admin",
+            "password": "admin123",
+        },
+        "ruaka": {
+            "name": "Ruaka",
+            "password": "ruaka123",
+        },
+        "buruburu": {
+            "name": "Buruburu",
+            "password": "buru123",
+        }
+    }
+}
 
 authenticator = stauth.Authenticate(
-    names,
-    usernames,
-    hashed_passwords,
-    'cash_app',
-    'abcdef',
+    credentials,
+    "cash_app",
+    "abcdef",
     cookie_expiry_days=1
 )
 
