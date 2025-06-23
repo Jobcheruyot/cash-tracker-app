@@ -1,14 +1,23 @@
 import streamlit as st
 import streamlit_authenticator as stauth
-from datetime import timedelta
 
 names = ['Admin', 'Ruaka', 'Buruburu']
 usernames = ['admin', 'ruaka', 'buruburu']
 passwords = ['admin123', 'ruaka123', 'buru123']
 roles = ['admin', 'user', 'user']
 
-hashed_passwords = stauth.Hasher(passwords).generate()
-authenticator = stauth.Authenticate(names, usernames, hashed_passwords, 'cash_app', 'abcdef', cookie_expiry_days=1)
+# 🔁 Corrected Hasher usage
+hasher = stauth.Hasher()
+hashed_passwords = hasher.generate(passwords)
+
+authenticator = stauth.Authenticate(
+    names,
+    usernames,
+    hashed_passwords,
+    'cash_app',
+    'abcdef',
+    cookie_expiry_days=1
+)
 
 def login_user():
     name, auth_status, username = authenticator.login("Login", "main")
